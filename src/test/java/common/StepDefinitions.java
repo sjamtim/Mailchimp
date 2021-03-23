@@ -29,6 +29,7 @@ public class StepDefinitions {
         searchBoxEmail.sendKeys(Integer.toString(randomUser));
         searchBoxEmail.sendKeys(Keys.ENTER);
         Thread.sleep(1000);
+
     }
 
 }
