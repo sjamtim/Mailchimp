@@ -17,6 +17,14 @@ public class StepDefinitions {
     private WebDriver driver;
     private Generators gen;
 
+    private void waitForClick(WebElement regButton) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(regButton)).click();
+    }
+    public void waitForElement(WebElement webElement) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
     @Given("user have navigated to the website")
     public void userHaveNavigatedToTheWebsite() {
         Browsers web = new Browsers();
@@ -24,6 +32,10 @@ public class StepDefinitions {
         driver = web.getBrowser("chrome");
         driver.get("https://login.mailchimp.com/signup/");
         driver.manage().window().maximize();
+
+        WebElement dismissCookiesButton = driver.findElement(By.cssSelector("button[id=onetrust-reject-all-handler]"));
+        waitForElement(dismissCookiesButton);
+        dismissCookiesButton.click();
     }
     @Given("user writes an email")
     public void userWritesAnEmail() {
@@ -46,8 +58,7 @@ public class StepDefinitions {
     @When("user clicks on Sign Up button")
     public void userClicksOnButton() {
         WebElement regButton = driver.findElement(By.cssSelector("button[id=create-account]"));
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.elementToBeClickable(regButton)).click();
+        waitForClick(regButton);
     }
     @Then("user should see the text {string}")
     public void userShouldSeeTheText(String checkEmail) {
