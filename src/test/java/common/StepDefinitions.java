@@ -21,7 +21,7 @@ public class StepDefinitions {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(regButton)).click();
     }
-    public void waitForElement(WebElement webElement) {
+    private void waitForElement(WebElement webElement) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
