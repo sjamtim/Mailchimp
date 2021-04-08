@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.Assert.assertEquals;
 
-
 public class StepDefinitions {
 
     private WebDriver driver;
@@ -30,7 +29,7 @@ public class StepDefinitions {
     public void userHaveNavigatedToTheWebsite() {
         Browsers web = new Browsers();
         gen = new Generators();
-        driver = web.getBrowser("edge");
+        driver = web.getBrowser("chrome");
         driver.get("https://login.mailchimp.com/signup/");
         driver.manage().window().maximize();
 
